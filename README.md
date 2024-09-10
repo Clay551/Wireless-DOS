@@ -2,7 +2,7 @@
 ## Run : 
 ### Linux
 ```
-apt update && apt upgrade -y && pip install -r requirements.txt
+apt update && apt upgrade -y && apt install nmap && apt install iw && pip install -r requirements.txt
 ```
 ```
 python3 main.py
